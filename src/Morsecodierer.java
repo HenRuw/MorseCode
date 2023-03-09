@@ -10,6 +10,6 @@ public class Morsecodierer {
         return "";
     }
     public void stelleBaumDar(){
-
+        BaumZeichner zeichner = new BaumZeichner(100,100,morseTree);
     }
 }
