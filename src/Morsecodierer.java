@@ -1,6 +1,6 @@
 public class Morsecodierer {
     public Morsecodierer() {
-
+        BinaryTree morseTree = new BinaryTree<>(" ", new BinaryTree<>(),new BinaryTree<>());
     }
 
     public String encodiereText(String pText){
