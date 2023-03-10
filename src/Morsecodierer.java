@@ -18,6 +18,8 @@ public class Morsecodierer {
         this.morseTree = morseTree;
     }
 
+
+
     public String encodiereText(String pText){
         pText = pText.toUpperCase();
         String ergebnis = "";
@@ -30,6 +32,18 @@ public class Morsecodierer {
             }
         }
         return ergebnis;
+    }
+
+    public Character decodiereZeichen(String pString, BinaryTree<Character> baum){
+        if (pString.length() == 0){
+            return baum.getContent();
+        }
+        if (pString.charAt(0) == '.'){
+            return decodiereZeichen(pString.substring(1), baum.getLeftTree());
+        }
+        else {
+            return decodiereZeichen(pString.substring(1), baum.getRightTree());
+        }
     }
 
     public String encodiereZeichen(Character pZeichen, BinaryTree<Character> pBaum, String pTeilcode) {
