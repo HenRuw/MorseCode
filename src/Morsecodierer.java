@@ -18,12 +18,36 @@ public class Morsecodierer {
         this.morseTree = morseTree;
     }
 
-    public String encodiereText(String pText) {
+    public String encodiereText(String pText){
+        pText = pText.toUpperCase();
+        String ergebnis = "";
+        for (int i = 0; i < pText.length(); i++) {
+            if (pText.charAt(i) == ' '){
+                ergebnis += "     ";
+            }
+            else {
+                ergebnis += encodiereZeichen(pText.charAt(i), morseTree, "")+ " ";
+            }
+        }
+        return ergebnis;
+    }
 
-        return "";
+    public String encodiereZeichen(Character pZeichen, BinaryTree<Character> pBaum, String pTeilcode) {
+        if (pBaum.isEmpty()){
+            return "";
+        }
+        String ergebnis = "";
+        if ((pBaum.getContent() == pZeichen)){
+            ergebnis = pTeilcode;
+        }
+        else {
+            ergebnis = encodiereZeichen(pZeichen, pBaum.getLeftTree(), pTeilcode + ".") + encodiereZeichen(pZeichen, pBaum.getRightTree(), pTeilcode + "-");
+        }
+        return ergebnis;
     }
 
     public String decodiereText(String pMorseCode) {
+
         return "";
     }
 
