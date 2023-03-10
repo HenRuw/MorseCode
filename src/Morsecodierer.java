@@ -25,7 +25,7 @@ public class Morsecodierer {
         String ergebnis = "";
         for (int i = 0; i < pText.length(); i++) {
             if (pText.charAt(i) == ' '){
-                ergebnis += "     ";
+                ergebnis += "   ";
             }
             else {
                 ergebnis += encodiereZeichen(pText.charAt(i), morseTree, "")+ " ";
@@ -36,6 +36,7 @@ public class Morsecodierer {
 
     public Character decodiereZeichen(String pString, BinaryTree<Character> baum){
         if (pString.length() == 0){
+            System.out.println(baum.getContent());
             return baum.getContent();
         }
         if (pString.charAt(0) == '.'){
@@ -61,8 +62,22 @@ public class Morsecodierer {
     }
 
     public String decodiereText(String pMorseCode) {
-
-        return "";
+        String ergebnis = "";
+        String morseZeichen = "";
+        for (int i = 0; i < pMorseCode.length(); i++) {
+            if (pMorseCode.charAt(i) == ' ' && (pMorseCode.charAt(i+1) == ' ' || pMorseCode.charAt(i-1) == ' ')){
+                //TODO finish, muss noch bei wortende auch decodiert werden
+            }
+            else if (pMorseCode.charAt(i) == ' '){
+                System.out.println(morseZeichen);
+                ergebnis += decodiereZeichen(morseZeichen, morseTree)+ " ";
+                morseZeichen = "";
+            }
+            else {
+                morseZeichen += pMorseCode.charAt(i);
+            }
+        }
+        return ergebnis;
     }
 
     public void stelleBaumDar() {
